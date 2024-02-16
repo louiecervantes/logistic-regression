@@ -8,7 +8,6 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from sklearn.preprocessing import StandardScaler
 
 # Define the Streamlit app
 def app():
@@ -48,13 +47,7 @@ def app():
             X_train, X_test, y_train, y_test = train_test_split(X, y, \
                 test_size=0.2, random_state=42)
 
-            # Scale the features using standardization
-            scaler = StandardScaler()
-            X_train = scaler.fit_transform(X_train)
-            X_test = scaler.transform(X_test)
-
             # Create the logistic regression 
-
             clf = LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
                             intercept_scaling=1, max_iter=100, multi_class='multinomial',
                             n_jobs=1, penalty='l2', random_state=42, solver='lbfgs',
