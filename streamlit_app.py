@@ -30,38 +30,36 @@ def app():
     so this dataset is not the original dataset available at the \
     machine learning websites.')
 
-    st.subheader('Configuring the Neural Net')
-    with st.echo(code_location='below'):
-        if st.button('Load the dataset'):
-            df = pd.read_csv('titanic.csv', header=0)
-            # st.dataframe(df, use_container_width=True)  
-            df = labeltonumeric(df, 'Sex')
-            df = labeltonumeric(df, 'Embarked')
-            
-            # display the dataset
-            st.dataframe(df, use_container_width=True)  
+    if st.button('Load the dataset'):
+        df = pd.read_csv('titanic.csv', header=0)
+        # st.dataframe(df, use_container_width=True)  
+        df = labeltonumeric(df, 'Sex')
+        df = labeltonumeric(df, 'Embarked')
+        
+        # display the dataset
+        st.dataframe(df, use_container_width=True)  
 
-            #load the data and the labels
-            X = df.values[:,0:-1]
-            y = df.values[:,-1].astype(int)            
-            
-            # Split the dataset into training and testing sets
-            X_train, X_test, y_train, y_test = train_test_split(X, y, \
-                test_size=0.2, random_state=42)
+        #load the data and the labels
+        X = df.values[:,0:-1]
+        y = df.values[:,-1].astype(int)            
+        
+        # Split the dataset into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, \
+            test_size=0.2, random_state=42)
 
-            # Create the logistic regression 
-            clf = LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-                            intercept_scaling=1, max_iter=100, multi_class='multinomial',
-                            n_jobs=1, penalty='l2', random_state=42, solver='lbfgs',
-                            tol=0.0001, verbose=0, warm_start=False)
+        # Create the logistic regression 
+        clf = LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                        intercept_scaling=1, max_iter=100, multi_class='multinomial',
+                        n_jobs=1, penalty='l2', random_state=42, solver='lbfgs',
+                        tol=0.0001, verbose=0, warm_start=False)
 
-            clf.fit(X_train,y_train)
+        clf.fit(X_train,y_train)
 
-            # Test the classifier on the testing set
-            accuracy = clf.score(X_test, y_test)
-            st.write('accuracy = ' + str(accuracy))
-            st.text(classification_report(y_test, clf.predict(X_test)))
-
+        # Test the classifier on the testing set
+        accuracy = clf.score(X_test, y_test)
+        st.write('accuracy = ' + str(accuracy))
+        st.text(classification_report(y_test, clf.predict(X_test)))
+        
 # Convert string data to numerical data
 def labeltonumeric(df, column):
     from sklearn.preprocessing import LabelEncoder
