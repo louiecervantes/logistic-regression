@@ -39,7 +39,10 @@ def app():
             #load the data and the labels
             X = df.values[:,0:-1]
             y = df.values[:,-1].astype(int)
-            
+
+            df = labeltonumeric(data, 'Sex')
+            df = labeltonumeric(data, 'Embarked')
+    
             # Split the dataset into training and testing sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, \
                 test_size=0.2, random_state=42)
@@ -70,9 +73,7 @@ def labeltonumeric(df, column):
     df[column] = le.fit_transform(df[column])
     return df
 
-    encoded = labeltonumeric(data, 'Sex')
-    encoded = labeltonumeric(data, 'Embarked')
-    print(encoded)
+
 
 #run the app
 if __name__ == "__main__":
