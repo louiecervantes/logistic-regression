@@ -35,14 +35,15 @@ def app():
         if st.button('Load the dataset'):
             df = pd.read_csv('titanic.csv', header=0)
             # st.dataframe(df, use_container_width=True)  
+            df = labeltonumeric(df, 'Sex')
+            df = labeltonumeric(df, 'Embarked')
+            
+            # display the dataset
+            st.dataframe(df, use_container_width=True)  
 
             #load the data and the labels
             X = df.values[:,0:-1]
-            y = df.values[:,-1].astype(int)
-
-            df = labeltonumeric(df, 'Sex')
-            df = labeltonumeric(df, 'Embarked')
-            st.dataframe(df, use_container_width=True)  
+            y = df.values[:,-1].astype(int)            
             
             # Split the dataset into training and testing sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, \
