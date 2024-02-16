@@ -44,17 +44,6 @@ def app():
             X = df.values[:,0:-1]
             y = df.values[:,-1].astype(int)
             
-            # Convert string data to numerical data
-            def labeltonumeric(df, column):
-                from sklearn.preprocessing import LabelEncoder
-                le = LabelEncoder()
-                df[column] = le.fit_transform(df[column])
-                return df
-
-                encoded = labeltonumeric(data, 'Sex')
-                encoded = labeltonumeric(data, 'Embarked')
-                print(encoded)
-            
             # Split the dataset into training and testing sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, \
                 test_size=0.2, random_state=42)
@@ -77,7 +66,18 @@ def app():
             accuracy = clf.score(X_test, y_test)
             st.write('accuracy = ' + str(accuracy))
             st.text(classification_report(y_test, clf.predict(X_test)))
-            
+
+# Convert string data to numerical data
+def labeltonumeric(df, column):
+    from sklearn.preprocessing import LabelEncoder
+    le = LabelEncoder()
+    df[column] = le.fit_transform(df[column])
+    return df
+
+    encoded = labeltonumeric(data, 'Sex')
+    encoded = labeltonumeric(data, 'Embarked')
+    print(encoded)
+
 #run the app
 if __name__ == "__main__":
     app()
