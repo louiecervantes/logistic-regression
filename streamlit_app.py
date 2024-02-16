@@ -46,14 +46,14 @@ def app():
             
             # Convert string data to numerical data
             def labeltonumeric(df, column):
-            from sklearn.preprocessing import LabelEncoder
-            le = LabelEncoder()
-            df[column] = le.fit_transform(df[column])
-            return df
+                from sklearn.preprocessing import LabelEncoder
+                le = LabelEncoder()
+                df[column] = le.fit_transform(df[column])
+                return df
 
-            encoded = labeltonumeric(data, 'Sex')
-            encoded = labeltonumeric(data, 'Embarked')
-            print(encoded)
+                encoded = labeltonumeric(data, 'Sex')
+                encoded = labeltonumeric(data, 'Embarked')
+                print(encoded)
             
             # Split the dataset into training and testing sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, \
