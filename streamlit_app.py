@@ -13,7 +13,7 @@ from sklearn.metrics import classification_report
 # Define the Streamlit app
 def app():
     
-    st.title('Logistic Regression Demo')
+    st.title('Logistic Regression')
     st.subheader('by Louie F. Cervantes M.Eng., WVSU College of ICT')
     st.write('The titanic dataset contains information about multiple \
     people like their ages, sexes, sibling counts, number of parent \
@@ -30,7 +30,7 @@ def app():
     so this dataset is not the original dataset available at the \
     machine learning websites.')
 
-    if st.button('Load the dataset'):
+    if st.button('Start'):
         df = pd.read_csv('titanic.csv', header=0)
         # st.dataframe(df, use_container_width=True)  
         df = labeltonumeric(df, 'Sex')
