@@ -29,11 +29,7 @@ def app():
     To simplify the processing, the datarows with missing values \
     so this dataset is not the original dataset available at the \
     machine learning websites.')
-    
-    #load the dataset
 
-    #shufle the data
-    df = df.sample(frac = 1)
     st.subheader('Configuring the Neural Net')
     with st.echo(code_location='below'):
         if st.button('Load the dataset'):
