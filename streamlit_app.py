@@ -40,8 +40,8 @@ def app():
             X = df.values[:,0:-1]
             y = df.values[:,-1].astype(int)
 
-            df = labeltonumeric(data, 'Sex')
-            df = labeltonumeric(data, 'Embarked')
+            df = labeltonumeric(df, 'Sex')
+            df = labeltonumeric(df, 'Embarked')
     
             # Split the dataset into training and testing sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, \
